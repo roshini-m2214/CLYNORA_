@@ -319,6 +319,8 @@ async function submitLogin(role) {
     showToast("Could not load patient records");
   }
 
+  startVitalsRealtime();
+
   closeModal();
   saveSession();
   logAction(`User ${U.name} authenticated successfully`, "Auth");
@@ -345,6 +347,7 @@ async function logout() {
   }
 
   logAction(`User ${signedOutUser} signed out`, "Auth");
+  stopVitalsRealtime();
   U = null;
   saveSession();
   go('home');
